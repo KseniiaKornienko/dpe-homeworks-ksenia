@@ -1,0 +1,61 @@
+{
+  "participant": "ksenia",
+  "linux_user": "dpe_ksenia",
+  "base": "/srv/dpe/ksenia",
+  "public_host": "edge.example.invalid",
+  "nodes": {
+    "edge": {
+      "host": "team-02-en",
+      "ip": "10.2.0.10"
+    },
+    "namenode": {
+      "host": "team-02-nn",
+      "ip": "10.2.0.11"
+    },
+    "worker0": {
+      "host": "team-02-00",
+      "ip": "10.2.0.12"
+    },
+    "worker1": {
+      "host": "team-02-01",
+      "ip": "10.2.0.13"
+    }
+  },
+  "ports": {
+    "nn_rpc": 22020,
+    "nn_http": 22070,
+    "snn_http": 22068,
+    "dn_transfer": 22066,
+    "dn_ipc": 22067,
+    "dn_http": 22064,
+    "dn_internal_http": 22065,
+    "rm_client": 22130,
+    "rm_scheduler": 22131,
+    "rm_tracker": 22132,
+    "rm_admin": 22133,
+    "rm_http": 22188,
+    "nm_rpc": 22140,
+    "nm_localizer": 22141,
+    "nm_http": 22142,
+    "shuffle": 22145,
+    "history_rpc": 22100,
+    "history_admin": 22101,
+    "history_http": 22198,
+    "web_proxy": 22189
+  },
+  "am_rpc_range": "22200-22249",
+  "am_web_range": "22250-22299",
+  "external_ports": {
+    "namenode": 22970,
+    "secondarynamenode": 22968,
+    "datanode_edge": 22964,
+    "datanode_worker0": 22965,
+    "datanode_worker1": 22966,
+    "resourcemanager": 22988,
+    "nodemanager_edge": 22942,
+    "nodemanager_worker0": 22943,
+    "nodemanager_worker1": 22944,
+    "historyserver": 22998,
+    "webappproxy": 22989
+  }
+}

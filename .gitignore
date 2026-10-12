@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+*.key
+credentials.json
+*.pem
+results/
+.DS_Store
+/common/cluster.json
+/common/known_hosts
