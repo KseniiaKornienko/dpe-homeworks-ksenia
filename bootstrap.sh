@@ -20,18 +20,18 @@ participant_base=/srv/dpe/ksenia
 if ! id "$participant_user" >/dev/null 2>&1; then useradd -m -s /bin/bash "$participant_user"; fi
 if [[ -e "$participant_base" && $(stat -c %U "$participant_base") != "$participant_user" ]]; then exit 1; fi
 [[ ! -L "$participant_base/homeworks" ]] || exit 1
-for component in common hw1 hw2; do
+for component in common hw1 hw2 hw4; do
   [[ ! -L "$participant_base/homeworks/$component" ]] || exit 1
 done
 install -d -o "$participant_user" -g "$participant_user" -m 755 "$participant_base" "$participant_base/homeworks"
 SETUP
-    tar -C "$ROOT" --exclude='__pycache__' --exclude='*.pyc' -cf - common hw1 hw2 README.md | \
+    tar -C "$ROOT" --exclude='__pycache__' --exclude='*.pyc' -cf - common hw1 hw2 hw4 README.md | \
       ssh "${SSH_ARGS[@]}" "team@$PUBLIC_HOST" 'sudo -u dpe_ksenia tar -xf - -C /srv/dpe/ksenia/homeworks'
     ssh "${SSH_ARGS[@]}" "team@$PUBLIC_HOST" 'bash /srv/dpe/ksenia/homeworks/common/cluster.sh setup'
     ;;
   run)
     action=${2:?Controller action required}
-    [[ "$action" =~ ^[a-z-]+$ ]] || exit 1
+    [[ "$action" =~ ^[a-z0-9-]+$ ]] || exit 1
     ssh "${SSH_ARGS[@]}" "team@$PUBLIC_HOST" "bash /srv/dpe/ksenia/homeworks/common/cluster.sh $action"
     ;;
   tunnel)

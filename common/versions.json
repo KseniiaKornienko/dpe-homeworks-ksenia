@@ -8,5 +8,15 @@
     "version": "jdk-11.0.32.1+1",
     "url": "https://github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.32.1%2B1/OpenJDK11U-jdk_x64_linux_hotspot_11.0.32.1_1.tar.gz",
     "sha256": "5c3f68887c325d36d852ba534303e1f5f1f5cae7d6cc1e951d73e0d8e98a058d"
+  },
+  "spark": {
+    "version": "3.5.7",
+    "url": "https://archive.apache.org/dist/spark/spark-3.5.7/spark-3.5.7-bin-hadoop3.tgz",
+    "sha512": "f3b7d5974d746b9aaecb19104473da91068b698a4d292177deb75deb83ef9dc7eb77062446940561ac9ab7ee3336fb421332b1c877292dab4ac1b6ca30f4f2e0"
+  },
+  "hive": {
+    "version": "2.3.9",
+    "url": "https://archive.apache.org/dist/hive/hive-2.3.9/apache-hive-2.3.9-bin.tar.gz",
+    "sha256": "1996327c96672e7ea8eaa8fc63972c75bc095287a32612e545e0e51c1622cb5c"
   }
 }

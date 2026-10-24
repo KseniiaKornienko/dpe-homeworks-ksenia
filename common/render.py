@@ -104,19 +104,18 @@ def render(role, output=None):
     for hw in ("hw1", "hw2"):
         target = Path(output) / hw if output else Path(BASE) / "conf" / hw
         target.mkdir(parents=True, exist_ok=True)
-        if hw == "hw2":
-            fqdn = socket.getfqdn()
-            short = NODES[role]["host"]
-            suffix = fqdn[len(short):] if fqdn.startswith(short + ".") else ""
-            hosts = ["127.0.0.1 localhost", "::1 ip6-localhost"]
-            for node in NODES.values():
-                host = node["host"]
-                aliases = [host, host + suffix] if suffix else [host]
-                hosts.append(" ".join([node["ip"], *aliases]))
-            hosts_path = target / "hosts"
-            if hosts_path.is_symlink():
-                raise ValueError("Refusing symlink hosts file")
-            hosts_path.write_text("\n".join(hosts) + "\n")
+        fqdn = socket.getfqdn()
+        short = NODES[role]["host"]
+        suffix = fqdn[len(short):] if fqdn.startswith(short + ".") else ""
+        hosts = ["127.0.0.1 localhost", "::1 ip6-localhost"]
+        for node in NODES.values():
+            host = node["host"]
+            aliases = [host, host + suffix] if suffix else [host]
+            hosts.append(" ".join([node["ip"], *aliases]))
+        hosts_path = target / "hosts"
+        if hosts_path.is_symlink():
+            raise ValueError("Refusing symlink hosts file")
+        hosts_path.write_text("\n".join(hosts) + "\n")
         scope_core = dict(core)
         scope_core["hadoop.tmp.dir"] = BASE + "/tmp/" + hw + "/hadoop"
         xml_file(target / "core-site.xml", scope_core)
@@ -150,7 +149,7 @@ export YARN_RESOURCEMANAGER_OPTS="-Xmx384m"
 export YARN_NODEMANAGER_OPTS="-Xmx256m"
 export YARN_PROXYSERVER_OPTS="-Xmx128m"
 export MAPRED_HISTORYSERVER_OPTS="-Xmx256m"
-export HADOOP_OPTS="-Djava.io.tmpdir={BASE}/tmp/{hw}{' ' + hosts_option if hw == 'hw2' else ''}"
+export HADOOP_OPTS="-Djava.io.tmpdir={BASE}/tmp/{hw} -Djdk.net.hosts.file={BASE}/conf/{hw}/hosts"
 export YARN_OPTS="$HADOOP_OPTS"
 export HADOOP_CLIENT_OPTS="$HADOOP_OPTS"
 export TMPDIR={BASE}/tmp/{hw}
