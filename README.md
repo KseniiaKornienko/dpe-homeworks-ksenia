@@ -1,6 +1,6 @@
-# ДЗ 1, 2 и 4: HDFS, YARN и Spark
+# ДЗ 1, 2, 3 и 4: HDFS, YARN, Hive и Spark
 
-Здесь решения заданий по [HDFS](hw1/README.md), [YARN](hw2/README.md) и [Spark](hw4/README.md). В каждой папке есть инструкция и скрипты. Общие файлы для установки и настройки лежат в `bootstrap.sh` и `common/`.
+Здесь решения заданий по [HDFS](hw1/README.md), [YARN](hw2/README.md), [Hive](hw3/README.md) и [Spark](hw4/README.md). В каждой папке есть инструкция и скрипты. Общие файлы для установки и настройки лежат в `bootstrap.sh` и `common/`.
 
 ## Подготовка
 
@@ -33,5 +33,7 @@ bash bootstrap.sh run proxy-start
 ```
 
 Для доступа к веб-интерфейсам с компьютера запустите в отдельном терминале `bash bootstrap.sh tunnel`. Команда `python3 common/port_table.py` покажет адреса всех интерфейсов на `localhost`. [Результат ДЗ 2](hw2/RESULTS.md).
+
+Для ДЗ 3 после запуска HDFS выполнить `bash bootstrap.sh run hw3-run`. [Инструкция](hw3/README.md) и [результат](hw3/RESULTS.md).
 
 Для ДЗ 4 после запуска HDFS и YARN выполнить `bash bootstrap.sh run hw4-run`. [Инструкция](hw4/README.md) и [результат](hw4/RESULTS.md).

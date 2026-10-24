@@ -47,7 +47,7 @@ fi
 if [[ -e "$participant_base" && $(stat -c %U "$participant_base") != "$participant_user" ]]; then
   echo 'Existing base belongs to someone else' >&2; exit 1
 fi
-for path in "$participant_base" "$participant_base"/{homeworks,conf,logs,pids,tmp,data,bin,software} "$participant_base/homeworks"/{common,hw1,hw2,hw4}; do
+for path in "$participant_base" "$participant_base"/{homeworks,conf,logs,pids,tmp,data,bin,software} "$participant_base/homeworks"/{common,hw1,hw2,hw3,hw4}; do
   [[ ! -L "$path" ]] || { echo "Symlink in participant path: $path" >&2; exit 1; }
 done
 install -d -o "$participant_user" -g "$participant_user" -m 755 "$participant_base" "$participant_base/homeworks"
@@ -76,7 +76,7 @@ if ! grep -qxF 'source ~/.dpe_env' "$participant_home/.bashrc"; then
 fi
 SETUP
       if [[ "$host" != "$EDGE_HOST" ]]; then
-        tar -C "$ROOT" --exclude='__pycache__' --exclude='*.pyc' -cf - common hw1 hw2 hw4 README.md | \
+        tar -C "$ROOT" --exclude='__pycache__' --exclude='*.pyc' -cf - common hw1 hw2 hw3 hw4 README.md | \
           node "$host" "sudo -u $DPE_USER tar -xf - -C $DPE_BASE/homeworks"
       fi
       participant "$host" install
@@ -114,8 +114,11 @@ SETUP
   hw4-run)
     node "$EDGE_HOST" "sudo -iu $DPE_USER bash $DPE_BASE/homeworks/hw4/run.sh"
     ;;
+  hw3-run)
+    node "$EDGE_HOST" "sudo -iu $DPE_USER bash $DPE_BASE/homeworks/hw3/run.sh"
+    ;;
   proxy-start|proxy-stop)
     node "$EDGE_HOST" "sudo -iu $DPE_USER python3 $DPE_BASE/homeworks/common/proxy_control.py $action"
     ;;
-  *) echo 'Actions: check setup hdfs-start yarn-start hw4-run proxy-start proxy-stop yarn-stop hdfs-stop' >&2; exit 2 ;;
+  *) echo 'Actions: check setup hdfs-start yarn-start hw3-run hw4-run proxy-start proxy-stop yarn-stop hdfs-stop' >&2; exit 2 ;;
 esac

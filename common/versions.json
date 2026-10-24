@@ -18,5 +18,10 @@
     "version": "2.3.9",
     "url": "https://archive.apache.org/dist/hive/hive-2.3.9/apache-hive-2.3.9-bin.tar.gz",
     "sha256": "1996327c96672e7ea8eaa8fc63972c75bc095287a32612e545e0e51c1622cb5c"
+  },
+  "derby": {
+    "version": "10.10.2.0",
+    "url": "https://archive.apache.org/dist/db/derby/db-derby-10.10.2.0/db-derby-10.10.2.0-lib.tar.gz",
+    "sha256": "78b865651b65eb0ec3fd7bc6a45c77583aa905a2836dd60faaca31852ef9670c"
   }
 }
